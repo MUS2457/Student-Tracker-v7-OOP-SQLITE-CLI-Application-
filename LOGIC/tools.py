@@ -50,3 +50,17 @@ def search_tool(conn):
 
         return students
 
+
+def get_top_students(conn, limit=3):
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT s.name, AVG(sub.score) AS avg_score
+        FROM students s
+        JOIN subjects sub ON s.id = sub.student_id
+        GROUP BY s.id
+        ORDER BY avg_score DESC
+        LIMIT ?
+    """, (limit,))
+
+    return cursor.fetchall()
