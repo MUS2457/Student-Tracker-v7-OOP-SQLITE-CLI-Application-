@@ -1,5 +1,9 @@
+from DATA.class_methods import Student
+
 
 def search_tool(conn):
+    students = {}
+
 
     cursor = conn.cursor()
 
@@ -29,6 +33,20 @@ def search_tool(conn):
             print("Sorry, cannot find the student")
             continue
 
-        student = [dict(n) for n in info]
+        for row in info:
+            date = row["date"]
+            name = row["name"]
 
-        return student
+            if date not in students:
+                students[date] = {}
+
+            if name not in students[date]:
+                students[date][name] = {}
+
+            subject = row["subject"]
+            score = row["score"]
+
+            students[date][name][subject] = score
+
+        return students
+

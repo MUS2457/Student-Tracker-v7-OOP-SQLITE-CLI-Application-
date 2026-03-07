@@ -30,3 +30,25 @@ def creation_tables(conn):
     """)
 
     conn.commit()
+
+def insert_data(conn, students):
+    cursor = conn.cursor()
+
+    for name, obj in students.items():
+
+        cursor.execute(
+            "INSERT INTO students (name) VALUES (?)",
+            (name,)
+        )
+
+        student_id = cursor.lastrowid   # use the id from previous table (students)
+
+        for subject, score in obj.subjects.items():
+            cursor.execute(
+                "INSERT INTO subjects (student_id, subject, score) VALUES (?, ?, ?)",
+                (student_id, subject, score)
+            )
+
+
+    conn.commit()
+

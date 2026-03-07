@@ -16,3 +16,17 @@ class Student :
             averages[name] = round(sum(obj.subjects.values()) / len(obj.subjects), 2) if obj.subjects else 0
         return averages
 
+    @classmethod
+    def from_dict(cls, data):   # for practice
+
+        students = {}
+
+        for date,names in data.items():
+            for name, subjects in names.items():
+                student = cls(name)
+                for subject, score in subjects.items():
+                    student.add_subject(subject, score)
+
+                students[name] = student
+
+        return students
