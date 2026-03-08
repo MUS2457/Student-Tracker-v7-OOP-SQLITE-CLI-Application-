@@ -34,7 +34,7 @@ def search_tool(conn):
             continue
 
         for row in info:
-            date = row["date"]
+            date = row["created_at"]
             name = row["name"]
 
             if date not in students:
