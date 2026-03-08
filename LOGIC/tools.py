@@ -48,10 +48,23 @@ def search_tool(conn):
 
             students[date][name][subject] = score
 
+        #for row in info:            just for learning transform the row into object directly
+        #    name = row["name"]
+
+        #    if name not in students:             we do this cause the info always return a name
+        #        students[name] = Student(name)    cause if not it will run the loop again line = 32 for reference
+
+        #   students[name].add_subject(row["subject"], row["score"])
+
         return students
 
 
 def get_top_students(conn, limit=3):
+    # table aliases:
+    # s.name = students.name
+    # sub.score = subjects.score
+    # AVG(sub.score) calculates the student's average score, avg_score name of that colum
+
     cursor = conn.cursor()
 
     cursor.execute("""
