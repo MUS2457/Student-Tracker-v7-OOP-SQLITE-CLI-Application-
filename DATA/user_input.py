@@ -4,7 +4,7 @@ def get_name():
     while True:
         name = input("Enter your name, 'done' to finish 'exit' to quit : ").strip()
 
-        if name.lower() in ('exit', 'quit'):
+        if name.lower() in ('done', 'exit'):
             return name.lower()
         elif any(char.isdigit() for char in name) or name == "":
             print("Enter a valid student name.")
