@@ -1,3 +1,4 @@
+from DATA.class_methods import Student
 from DATA.user_input import get_student
 from DATA.SQL_FILE import creation_connection, creation_tables, insert_data
 
@@ -16,6 +17,13 @@ from LOGIC.tools import search_tool, get_top_students
 def run_analysis(students):
 
     print("\n===== CLASS ANALYSIS =====")
+
+    averages = Student.students_averages(students)
+
+    if averages:
+        print("average per student :")
+        for name,average in averages.items():
+            print(f"{name} average {average}")
 
     result = class_averages(students)
     if result:
