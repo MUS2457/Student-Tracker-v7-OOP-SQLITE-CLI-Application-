@@ -90,3 +90,44 @@ def valid_invalid_subjects(students):
                 invalidated_subjects[name][subject] = score
 
     return validated_subjects, invalidated_subjects
+
+def students_grade (students):
+    grades = {}
+    averages = Student.students_averages(students)
+    if not averages :
+        return grades
+    for name, average in averages.items():
+        if 90 <= average <= 100:
+            grade = "A"
+        elif 80 <= average < 90:
+            grade = "B"
+        elif 70 <= average < 80:
+            grade = "C"
+        elif 50 <= average < 70:
+            grade = "D"
+        else:
+            grade = "F"
+        grades[name] = grade
+
+    return grades
+
+def class_grade(students):
+    result = class_averages(students)
+
+    if not result:
+        return None
+
+    class_average, number_of_students = result
+
+    if 80 <= class_average < 90:
+        grade = "A"
+    elif 70 <= class_average < 80:
+        grade = "B"
+    elif 60 <= class_average < 70:
+        grade = "C"
+    elif 50 <= class_average < 60:
+        grade = "D"
+    else:
+        grade = "F"
+
+    return grade

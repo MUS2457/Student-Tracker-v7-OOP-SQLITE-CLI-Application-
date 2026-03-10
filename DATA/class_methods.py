@@ -17,7 +17,7 @@ class Student :
         return averages
 
     @classmethod
-    def from_dict(cls, data):   # for practice
+    def from_dict(cls, data):   # for practice not used
 
         students = {}
 

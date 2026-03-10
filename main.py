@@ -8,7 +8,9 @@ from LOGIC.calculations import (
     below_above_class_average,
     top_low_students,
     subjects_per_student,
-    valid_invalid_subjects
+    valid_invalid_subjects,
+    class_grade,
+    students_grade
 )
 
 from LOGIC.tools import search_tool, get_top_students
@@ -25,10 +27,19 @@ def run_analysis(students):
         for name,average in averages.items():
             print(f"{name} average {average}")
 
+    students_grades = students_grade(students)
+
+    if students_grades:
+        print("students grades :")
+        for name,grade in students_grades.items():
+            print(f"{name} grade {grade}")
+
     result = class_averages(students)
+    grade = class_grade(students)
+
     if result:
         avg, number = result
-        print(f"\nClass average: {avg}")
+        print(f"\nClass average: {avg} grade: {grade}")
         print(f"Number of students: {number}")
 
     fail, success, n_fail, n_success = pass_fail_students(students)
@@ -75,7 +86,7 @@ def main():
 
     while True:
 
-        print("\n===== STUDENT SYSTEM =====")
+        print("\n===== STUDENT TRACKER V8 =====")
         print("1. Add students and analyze")
         print("2. Search student")
         print("3. Top 3 students")
